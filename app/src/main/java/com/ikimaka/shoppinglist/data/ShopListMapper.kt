@@ -1,8 +1,9 @@
 package com.ikimaka.shoppinglist.data
 
 import com.ikimaka.shoppinglist.domain.ShopItem
+import javax.inject.Inject
 
-class ShopListMapper {
+class ShopListMapper @Inject constructor() {
 
     fun mapEntityToDbModel(shopItem: ShopItem): ShopItemDbModel = ShopItemDbModel(
         shopItem.id,

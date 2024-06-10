@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.ikimaka.shoppinglist.R
 import com.ikimaka.shoppinglist.databinding.FragmentShopItemBinding
 import com.ikimaka.shoppinglist.domain.ShopItem
+import javax.inject.Inject
 
 class ShopItemFragment : Fragment() {
 
@@ -30,8 +31,18 @@ class ShopItemFragment : Fragment() {
     private var screenMode: String = MODE_UNKNOWN
     private var shopItemId: Int = ShopItem.UNDEFINED_ID
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (requireActivity().application as ShopApplication).component
+    }
+
     override fun onAttach(context: Context) {
+        component.inject(this)
+
         super.onAttach(context)
+
         if (context is OnEditingFinishedListener) {
             onEditingFinishedListener = context
         } else {
@@ -56,7 +67,7 @@ class ShopItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(ShopItemViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ShopItemViewModel::class.java)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
