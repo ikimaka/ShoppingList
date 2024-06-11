@@ -23,6 +23,8 @@ class MainViewModel @Inject constructor(
 ): ViewModel() {
 
 
+
+
     val shopList = getShopListUseCase.getShopList()
 
     fun deleteShopItem(shopItem: ShopItem) {
