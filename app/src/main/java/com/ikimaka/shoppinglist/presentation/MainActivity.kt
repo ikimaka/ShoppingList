@@ -1,5 +1,6 @@
 package com.ikimaka.shoppinglist.presentation
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ikimaka.shoppinglist.R
 import com.ikimaka.shoppinglist.databinding.ActivityMainBinding
 import com.ikimaka.shoppinglist.domain.ShopItem
+import java.net.URI
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
@@ -51,6 +53,15 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
                 launchFragment(ShopItemFragment.newInstanceAddItem())
             }
         }
+
+        contentResolver.query(
+            Uri.parse("content://com.ikimaka.shoppinglist/shop_items"),
+            null,
+            null,
+            null,
+            null,
+            null
+        )
     }
 
     override fun onEditingFinished() {
