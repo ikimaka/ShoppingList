@@ -2,6 +2,7 @@ package com.ikimaka.shoppinglist.di
 
 import android.app.Activity
 import android.app.Application
+import com.ikimaka.shoppinglist.data.ShopListProvider
 import com.ikimaka.shoppinglist.presentation.MainActivity
 import com.ikimaka.shoppinglist.presentation.ShopItemFragment
 import dagger.BindsInstance
@@ -14,6 +15,8 @@ interface ApplicationComponent {
     fun inject(activity: MainActivity)
 
     fun inject(fragment: ShopItemFragment)
+
+    fun inject(provider: ShopListProvider)
 
     @Component.Factory
     interface Factory {
