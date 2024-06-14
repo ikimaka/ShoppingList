@@ -5,16 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainer
-import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ikimaka.shoppinglist.R
 import com.ikimaka.shoppinglist.databinding.ActivityMainBinding
-import com.ikimaka.shoppinglist.domain.ShopItem
-import java.net.URI
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
@@ -53,9 +48,8 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
                 launchFragment(ShopItemFragment.newInstanceAddItem())
             }
         }
-
         contentResolver.query(
-            Uri.parse("content://com.ikimaka.shoppinglist/shop_items"),
+            Uri.parse("content://com.ikimaka.shoppinglist/shop_items/5"),
             null,
             null,
             null,
